@@ -12,7 +12,7 @@ main {
   margin: 0 auto;
 }
 
-header {
+/* header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -33,7 +33,7 @@ header a.logo {
 header nav {
   display: flex;
   gap: 15px;
-}
+} */
 
 div.post {
   display: grid;
