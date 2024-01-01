@@ -1,10 +1,11 @@
+import { BsPencilSquare } from "react-icons/bs";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   const { user } = useSelector((store) => store.user);
-  const userJson = JSON.parse(user);
+
   return (
     <header className="flex justify-between items-center">
       <Link to="/" className="logo text-red-500 font-bold text-2xl">
@@ -16,9 +17,14 @@ const Header = () => {
           <Link to="/register">Register</Link>
         </nav>
       ) : (
-        <Link to={`/${userJson.username}`} className="">
-          <img className="rounded-full w-9 h-9" src={userJson.avatar} alt="" />
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link to={`/${user.username}`} className="order-2">
+            <img className="rounded-full w-9 h-9" src={user.avatar} alt="" />
+          </Link>
+          <Link className="text-2xl order-1" to={"/write"}>
+            <BsPencilSquare />
+          </Link>
+        </div>
       )}
     </header>
   );

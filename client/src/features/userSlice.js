@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   addUserToLocalStorage,
   getUserFromLocalStorage,
+  removeUserFromLocalStorage,
 } from "../utils/localStorage";
 
 const userSlice = createSlice({
@@ -24,9 +25,15 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    signOutFun: (state) => {
+      state.user = null;
+      state.loading = false;
+      removeUserFromLocalStorage();
+    },
   },
 });
 
-export const { signInStart, signInSuccess, signInFailed } = userSlice.actions;
+export const { signInStart, signInSuccess, signInFailed, signOutFun } =
+  userSlice.actions;
 
 export default userSlice.reducer;

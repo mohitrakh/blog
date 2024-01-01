@@ -1,32 +1,37 @@
 import React from "react";
+import { Link } from "react-router-dom";
+const Card = ({ blog }) => {
+  let date = new Date(blog.createdAt);
 
-const Card = () => {
   return (
-    <div className="flex items-center gap-5">
+    <Link to={`/blog/${blog._id}`} className="flex items-center gap-5">
       <div className="">
         <img
-          className="rounded-lg max-w-60"
-          src="https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&height=900&width=1600&fit=bounds"
+          className="rounded-lg min-w-60 object-contain max-w-60 max-h-32"
+          src={blog.poster}
           alt=""
         />
       </div>
       <div className=" flex flex-col gap-2">
-        <h2 className="font-bold text-[16px]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, qui.
-        </h2>
+        <h2 className="font-bold text-[16px]">{blog.title}</h2>
         <p className="flex gap-3">
-          <a href="#" className="font-bold text-gray-700">
-            My name
+          <a href="#" className=" text-gray-700">
+            created by{" "}
+            <span className="font-semibold">
+              {blog.author ? blog.author : "Unknown"}
+            </span>
           </a>
-          <time className="text-gray-700">2021-01-06 15;:34</time>
+          <time className="text-gray-700">
+            {date.toDateString()}
+            {/* {date.toUTCString()}
+            {date.getMonth()}
+            {date.getDate()}
+            {date.getFullYear()} */}
+          </time>
         </p>
-        <p className="line-clamp-3">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
-          deleniti optio quis pariatur mollitia, veniam id quod eveniet placeat
-          necessitatibus?
-        </p>
+        <p className="line-clamp-3">{blog.description.slice(0, 100)}...</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

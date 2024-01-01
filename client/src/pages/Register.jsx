@@ -40,6 +40,7 @@ const Register = () => {
             id="username"
             className="bg-gray-300 py-3 px-6 rounded-lg"
             onChange={handleChange}
+            required
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -51,6 +52,7 @@ const Register = () => {
             id="email"
             className="bg-gray-300 py-3 px-6 rounded-lg"
             onChange={handleChange}
+            required
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -62,6 +64,7 @@ const Register = () => {
             id="password"
             className="bg-gray-300 py-3 px-6 rounded-lg"
             onChange={handleChange}
+            required
           />
         </div>
         <p className="text-red-600 text-xs">{error}</p>
@@ -71,7 +74,7 @@ const Register = () => {
           className="bg-red-500 py-3 rounded-lg text-white text-xl"
           onClick={handleSubmit}
         >
-          Login
+          Register
         </button>
         <p>
           Already have an account ?{" "}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import customFetch from "../utils/fetchApi";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   signInFailed,
   signInStart,
@@ -11,6 +11,7 @@ import {
 
 const Login = () => {
   const [formData, setFormData] = useState({});
+  const { error, user, loading } = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -50,6 +51,7 @@ const Login = () => {
           <input
             onChange={handleChange}
             id="email"
+            required
             type="email"
             className="bg-gray-300 py-3 px-6 rounded-lg"
           />
@@ -60,17 +62,19 @@ const Login = () => {
           </label>
           <input
             onChange={handleChange}
+            required
             id="password"
             type="password"
             className="bg-gray-300 py-3 px-6 rounded-lg"
           />
         </div>
-
+        <p>{error}</p>
         <button
+          disabled={loading}
           type="submit"
           className="bg-red-500 py-3 rounded-lg text-white text-xl"
         >
-          Login
+          {loading ? "Loading..." : "Login"}
         </button>
         <p>
           Don't have an account ?{" "}
